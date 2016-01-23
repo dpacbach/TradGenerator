@@ -6,6 +6,7 @@ play: tune.mp3
 	mpg123 --buffer 1024 tune.mp3 
 
 view: tune.pdf
+	gnome-open $^
 
 clean:
 	-rm tune.abc tune.ps tune.pdf tune.mid tune.wav tune.mp3 tune.tar
@@ -25,8 +26,8 @@ tune.wav: tune.mid
 
 tune.mid: tune.abc
 	abc2midi tune.abc
-	mv `ls -rS tune?.mid | tail -n 1` tmp.mid
-	ls tune?.mid | xargs rm
+	-mv `ls -rS tune?.mid | tail -n 1` tmp.mid
+	-ls tune?.mid | xargs rm
 	mv tmp.mid tune.mid
 
 ################################################################################
